@@ -21,6 +21,10 @@
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-x") 'smex)
 
+;; Indent with spaces only
+(setq-default indent-tabs-mode nil)
+(setq-default show-trailing-whitespace t)
+
 ;;Chargement du theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (load-theme 'Arthuremacstheme t)
