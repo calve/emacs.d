@@ -91,7 +91,8 @@
    rainbow-mode
    tuareg-mode
    xterm-color
-   yasnippet
+   yasnippet	
+   web-mode
    ))          
 
 (setq my:el-get-packages
