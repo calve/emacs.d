@@ -71,7 +71,8 @@
  
  (:name magit; git meet emacs, and a binding
 	:after (lambda ()
-		 (global-set-key (kbd "M-g") 'magit-status)))))
+		 (global-set-key (kbd "M-g") 'magit-status))))
+)
 
 ;; now set our own packages
 (setq
@@ -90,13 +91,18 @@
    markdown-mode
    php-eldoc
    php-mode
+   python-mode
+   pymacs
    pkgbuild-mode
    popup
    rainbow-mode
+   rope
+   ropemacs
    tuareg-mode
    xterm-color
    yasnippet
-   ))          
+   web-mode
+   ))
 
 (setq my:el-get-packages
       (append
@@ -130,6 +136,17 @@
 
 ;; settings gud/gdb
 (setq gdb-show-main t)
+
+(autoload 'pymacs-apply "pymacs")
+(autoload 'pymacs-call "pymacs")
+(autoload 'pymacs-eval "pymacs" nil t)
+(autoload 'pymacs-exec "pymacs" nil t)
+(autoload 'pymacs-load "pymacs" nil t)
+(autoload 'pymacs-autoload "pymacs")
+
+(setq py-install-directory "~/.emacs.d/el-get/python-mode")
+(add-to-list 'load-path py-install-directory)
+(require 'python-mode)
 
 ;; company is a completion mode using backends and frontends
 ;; we set here the behaviour of tab key. Hit it will :
