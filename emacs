@@ -43,6 +43,9 @@
 (setq split-width-threshold 50)
 (setq window-min-width 30)
 
+;; Use hunspell for grammar and syntax correction
+(setq ispell-program-name "hunspell")
+
 ;;Interactively do things with buffers and files
 (require 'ido)
 (ido-mode t)
