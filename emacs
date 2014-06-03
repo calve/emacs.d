@@ -88,6 +88,7 @@
  my:el-get-packages
  '(el-get; el-get is self-hosting
    autopair
+   anaconda-mode
    c-eldoc
    color-theme                ; nice looking emacs
    color-theme-tango
@@ -142,6 +143,11 @@
 ;; settings gud/gdb
 (setq gdb-show-main t)
 
+;; python eldoc and completion
+(add-hook 'python-mode-hook 'anaconda-mode)
+(add-hook 'python-mode-hook 'anaconda-eldoc)
+(add-to-list 'company-backends 'company-anaconda)
+
 ;; company is a completion mode using backends and frontends
 ;; we set here the behaviour of tab key. Hit it will :
 ;; indent the current line, then iterate over completion candidates
@@ -153,7 +159,7 @@
 ;;   )
 
 ;; (global-set-key "\t" 'complete-or-indent)
-;; (setq company-selection-wrap-around t)
+(setq company-selection-wrap-around t)
 
 ;; (eval-after-load 'company
 ;;   '(progn
