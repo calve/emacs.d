@@ -46,6 +46,11 @@
 (require 'ido)
 (ido-mode t)
 
+(require 'package)
+(add-to-list 'package-archives
+  '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(package-initialize)
+
 ;; bootstrap el-get
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
@@ -55,6 +60,12 @@
        "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
     (goto-char (point-max))
     (eval-print-last-sexp)))
+
+(require 'el-get-elpa)
+;; Build the El-Get copy of the package.el packages if we have not
+;; built it before.  Will have to look into updating later ...
+(unless (file-directory-p el-get-recipe-path-elpa)
+  (el-get-elpa-build-local-recipes))
 
 (el-get 'sync)
 
