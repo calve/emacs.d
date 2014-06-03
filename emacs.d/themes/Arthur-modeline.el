@@ -49,7 +49,8 @@
 				   (concat (format-time-string "%c; ")
 					   (emacs-uptime "Uptime:%hh"))))
 	       " --"
-	       minor-mode-alist ;; list of minor modes
+	       '(:eval '("" minor-mode-alist))
+	       " "
 	       "%-" ;; fill with '-'
 	       )
 	      
