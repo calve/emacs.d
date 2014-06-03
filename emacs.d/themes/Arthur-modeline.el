@@ -1,6 +1,6 @@
 (setq mode-line-preformat
               (list
-               ;;(propertize "%b" 'face 'font-lock-default-face)
+               (propertize "%b" 'face 'font-lock-default-face)
                ;; line and column
                " (" ;; '%02' to set to 2 chars at least; prevents flickering
                (propertize "%02l" 'face 'font-lock-type-face) ","
