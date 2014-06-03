@@ -47,6 +47,7 @@
  '(ediff-even-diff-B ((t (:inherit diff-removed))))
 
  '(header-line ((t (:inherit mode-line ))))
+ '(git-commit-summary-face ((t (:foreground "brightblue"))))
  '(magit-diff-none ((t (:inherit diff-context :foreground "black"))))
  '(magit-item-highlight ((t (:inherit secondary-selection :background "brightblack" :foreground "black"))))
  '(region ((t (:inverse-video t))))

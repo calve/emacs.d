@@ -21,6 +21,10 @@
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-x") 'smex)
 
+;; Indent with spaces only
+(setq-default indent-tabs-mode nil)
+(setq-default show-trailing-whitespace t)
+
 ;;Chargement du theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (load-theme 'Arthuremacstheme t)
@@ -81,7 +85,8 @@
  
  (:name magit; git meet emacs, and a binding
 	:after (lambda ()
-		 (global-set-key (kbd "M-g") 'magit-status)))))
+		 (global-set-key (kbd "M-g") 'magit-status))))
+)
 
 ;; now set our own packages
 (setq
@@ -96,7 +101,7 @@
    flycheck
    git-commit-mode
    git-rebase-mode
-   god-mode 
+   god-mode
    js2-mode
    markdown-mode
    php-eldoc
@@ -106,9 +111,9 @@
    rainbow-mode
    tuareg-mode
    xterm-color
-   yasnippet	
+   yasnippet
    web-mode
-   ))          
+   ))
 
 (setq my:el-get-packages
       (append
