@@ -89,7 +89,7 @@
    flycheck
    git-commit-mode
    git-rebase-mode
-   god-mode 
+   god-mode
    js2-mode
    markdown-mode
    php-eldoc
