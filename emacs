@@ -185,6 +185,20 @@
 (add-hook 'god-mode-enabled-hook 'god-mode-modeline)
 (add-hook 'god-mode-disabled-hook 'god-mode-modeline)
 
+;;a try to swap home keys
+(define-key key-translation-map "\C-b" "\C-s")
+(define-key key-translation-map "\C-s" "\C-b")
+(define-key key-translation-map "\C-f" "\C-r")
+(define-key key-translation-map "\C-r" "\C-f")
+(define-key key-translation-map "\C-t" "\C-p")
+(define-key key-translation-map "\C-p" "\C-t")
+(define-key god-local-mode-map (kbd "t") 'previous-line)
+(define-key god-local-mode-map (kbd "s") 'backward-char)
+(define-key god-local-mode-map (kbd "r") 'forward-char)
+(define-key god-local-mode-map (kbd "p") 'transpose-char)
+(define-key god-local-mode-map (kbd "b") 'isearch)
+(define-key god-local-mode-map (kbd "f") 'reverse-isearch)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
