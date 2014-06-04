@@ -170,6 +170,9 @@
 ;;   '(progn
 ;; 
 
+;; whitespaces configuration, mostly show tabulations
+(setq whitespace-style (quote (face tabs tab-mark trailing empty)))
+(global-whitespace-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

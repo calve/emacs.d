@@ -13,7 +13,11 @@
  '(region ((t (:background "color-16"))))
  '(shadow ((((class color grayscale) (min-colors 88) (background light)) (:foreground "grey50")) (((class color grayscale) (min-colors 88) (background dark)) (:foreground "grey70")) (((class color) (min-colors 8) (background light)) (:foreground "green")) (((class color) (min-colors 8) (background dark)) (:foreground "yellow"))))
  '(secondary-selection ((((class color) (min-colors 88) (background light)) (:background "yellow1")) (((class color) (min-colors 88) (background dark)) (:background "SkyBlue4")) (((class color) (min-colors 16) (background light)) (:background "yellow")) (((class color) (min-colors 16) (background dark)) (:background "SkyBlue4")) (((class color) (min-colors 8)) (:foreground "black" :background "cyan")) (t (:inverse-video t))))
- '(trailing-whitespace ((t (:underline t :foreground "#d70000"))))
+ '(trailing-whitespace ((t (:underline t :foreground "#d70000" :background nil))))
+ '(whitespace-trailing ((t (:underline t :foreground "#00afaf" :background nil))))
+ '(whitespace-tab ((t (:underline t :foreground "#00afaf" :background nil))))
+ '(whitespace-space ((t (:underline t :foreground "#00afaf" :background nil))))
+ '(whitespace-empty ((t (:underline t :foreground "#585858" :background nil))))
 
  '(font-lock-builtin-face ((t (:foreground "#af005f"))))
  '(font-lock-comment-delimiter-face ((default (:inherit (font-lock-comment-face)))))
