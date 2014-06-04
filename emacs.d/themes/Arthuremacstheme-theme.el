@@ -50,7 +50,7 @@
  '(diff-header ((t (:background "white" :foreground "brightwhite"))))
  '(ediff-even-diff-B ((t (:inherit diff-removed))))
 
- '(header-line ((t (:inherit mode-line ))))
+ '(header-line ((t (:background "grey10"  :foreground "#0087ff"))))
  '(git-commit-summary-face ((t (:foreground "brightblue"))))
  '(magit-diff-none ((t (:inherit diff-context :foreground "black"))))
  '(magit-item-highlight ((t (:inherit secondary-selection :background "brightblack" :foreground "black"))))
@@ -61,11 +61,11 @@
  '(woman-italic ((t (:inherit italic :foreground "brightgreen"))))
 
 ;; mode line faces
- '(mode-line ((t (:background "black" :foreground "brightblue"))))
+ '(mode-line ((t (:background "black" :foreground "#0087ff"))))
  '(mode-line-buffer-id ((t (:weight bold))))
  '(mode-line-emphasis ((t (:weight bold))))
 ; '(mode-line-highlight ((((class color) (min-colors 88)) (:box (:line-width 2 :color "grey40" :style released-button))) (t (:inherit (highlight)))))
- '(mode-line-inactive ((t (:background "grey10" :foreground "#005fd7"))))
+ '(mode-line-inactive ((t (:background "grey10" :foreground "#808080"))))
 
  '(isearch ((((class color) (min-colors 88) (background light)) (:foreground "lightskyblue1" :background "magenta3")) (((class color) (min-colors 88) (background dark)) (:foreground "brown4" :background "palevioletred2")) (((class color) (min-colors 16)) (:foreground "cyan1" :background "magenta4")) (((class color) (min-colors 8)) (:foreground "cyan1" :background "magenta4")) (t (:inverse-video t))))
  '(isearch-fail ((((class color) (min-colors 88) (background light)) (:background "RosyBrown1")) (((class color) (min-colors 88) (background dark)) (:background "red4")) (((class color) (min-colors 16)) (:background "red")) (((class color) (min-colors 8)) (:background "red")) (((class color grayscale)) (:foreground "grey")) (t (:inverse-video t))))

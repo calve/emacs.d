@@ -171,6 +171,20 @@
 (setq whitespace-style (quote (face tabs tab-mark trailing empty)))
 (global-whitespace-mode)
 
+;; tms prevention with god-mode
+(require 'god-mode)
+(global-set-key (kbd "œ") 'god-mode-all)
+(global-set-key (kbd "M-'") 'god-mode-all)
+(define-key god-local-mode-map (kbd "z") 'repeat)
+(define-key god-local-mode-map (kbd "i") 'god-local-mode)
+(defun god-mode-modeline ()
+  (cond (god-local-mode (progn (set-face-background 'mode-line "#e4e4e4") 
+                               (set-face-background 'mode-line-inactive "#ffffd7")))
+        (t (progn (set-face-background 'mode-line "black")
+                  (set-face-background 'mode-line-inactive "grey10")))))
+(add-hook 'god-mode-enabled-hook 'god-mode-modeline)
+(add-hook 'god-mode-disabled-hook 'god-mode-modeline)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
