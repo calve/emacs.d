@@ -6,8 +6,8 @@
 (normal-top-level-add-subdirs-to-load-path)
 
 ;;This key will kill the active buffer without any prompting whatsoever.
-(defun kill-this-buffer () 
-  (interactive) 
+(defun kill-this-buffer ()
+  (interactive)
   (kill-buffer (current-buffer)))
 
 ;; Key binding
@@ -23,7 +23,7 @@
 
 ;; Indent with spaces only
 (setq-default indent-tabs-mode nil)
-(setq-default show-trailing-whitespace t)
+;;(setq-default show-trailing-whitespace t)
 
 ;;Chargement du theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
@@ -78,26 +78,26 @@
 (setq
  el-get-sources
  '((:name smex; a better (ido like) M-x
-	:after (lambda ()
-		 (setq smex-save-file "~/.emacs.d/.smex-items")
-		 (global-set-key (kbd "M-x") 'smex)
-		 (global-set-key (kbd "M-X") 'smex-major-mode-commands)))
- 
+        :after (lambda ()
+                 (setq smex-save-file "~/.emacs.d/.smex-items")
+                 (global-set-key (kbd "M-x") 'smex)
+                 (global-set-key (kbd "M-X") 'smex-major-mode-commands)))
+
  (:name magit; git meet emacs, and a binding
-	:after (lambda ()
-		 (global-set-key (kbd "M-g") 'magit-status))))
+        :after (lambda ()
+                 (global-set-key (kbd "M-g") 'magit-status))))
 )
 
 ;; now set our own packages
 (setq
  my:el-get-packages
  '(el-get; el-get is self-hosting
+   company-mode
    autopair
    anaconda-mode
    c-eldoc
    color-theme                ; nice looking emacs
    color-theme-tango
-   company-mode
    flycheck
    git-commit-mode
    git-rebase-mode
@@ -143,15 +143,9 @@
 (setq ps-default-bg t)
 
 ;; control-mode, like caps lock but for modifiers
-;;(control-mode-localized-setup)		
 
 ;; settings gud/gdb
 (setq gdb-show-main t)
-
-;; python eldoc and completion
-(add-hook 'python-mode-hook 'anaconda-mode)
-(add-hook 'python-mode-hook 'anaconda-eldoc)
-(add-to-list 'company-backends 'company-anaconda)
 
 ;; company is a completion mode using backends and frontends
 ;; we set here the behaviour of tab key. Hit it will :
@@ -164,13 +158,48 @@
 ;;   )
 
 ;; (global-set-key "\t" 'complete-or-indent)
+(global-company-mode)
 (setq company-selection-wrap-around t)
 
-;; (eval-after-load 'company
-;;   '(progn
-;; 
-
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; python eldoc and completion
+(add-hook 'python-mode-hook 'anaconda-mode)
+(add-hook 'python-mode-hook 'anaconda-eldoc)
+(add-hook 'python-mode-hook (add-to-list 'company-backends 'company-anaconda))
+
+
+;; whitespaces configuration, mostly show tabulations
+(setq whitespace-style (quote (face tabs tab-mark trailing empty)))
+(global-whitespace-mode)
+
+;; tms prevention with god-mode
+(require 'god-mode)
+(global-set-key (kbd "œ") 'god-mode-all)
+(global-set-key (kbd "M-'") 'god-mode-all)
+(define-key god-local-mode-map (kbd "z") 'repeat)
+(define-key god-local-mode-map (kbd "i") 'god-local-mode)
+(defun god-mode-modeline ()
+  (cond (god-local-mode (progn (set-face-background 'mode-line "#e4e4e4") 
+                               (set-face-background 'mode-line-inactive "#ffffd7")))
+        (t (progn (set-face-background 'mode-line "black")
+                  (set-face-background 'mode-line-inactive "grey10")))))
+(add-hook 'god-mode-enabled-hook 'god-mode-modeline)
+(add-hook 'god-mode-disabled-hook 'god-mode-modeline)
+
+;;a try to swap home keys
+(define-key key-translation-map "\C-b" "\C-s")
+(define-key key-translation-map "\C-s" "\C-b")
+(define-key key-translation-map "\C-f" "\C-r")
+(define-key key-translation-map "\C-r" "\C-f")
+(define-key key-translation-map "\C-t" "\C-p")
+(define-key key-translation-map "\C-p" "\C-t")
+(define-key god-local-mode-map (kbd "t") 'previous-line)
+(define-key god-local-mode-map (kbd "s") 'backward-char)
+(define-key god-local-mode-map (kbd "r") 'forward-char)
+(define-key god-local-mode-map (kbd "p") 'transpose-char)
+(define-key god-local-mode-map (kbd "b") 'isearch)
+(define-key god-local-mode-map (kbd "f") 'reverse-isearch)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -191,5 +220,4 @@
 
 (global-unset-key (kbd "<backtab>"))
 (global-set-key (kbd "<backtab>") 'other-window)
-
 
