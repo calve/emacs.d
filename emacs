@@ -170,6 +170,7 @@
 ;;   '(progn
 ;; 
 
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
