@@ -14,10 +14,10 @@
  '(shadow ((((class color grayscale) (min-colors 88) (background light)) (:foreground "grey50")) (((class color grayscale) (min-colors 88) (background dark)) (:foreground "grey70")) (((class color) (min-colors 8) (background light)) (:foreground "green")) (((class color) (min-colors 8) (background dark)) (:foreground "yellow"))))
  '(secondary-selection ((((class color) (min-colors 88) (background light)) (:background "yellow1")) (((class color) (min-colors 88) (background dark)) (:background "SkyBlue4")) (((class color) (min-colors 16) (background light)) (:background "yellow")) (((class color) (min-colors 16) (background dark)) (:background "SkyBlue4")) (((class color) (min-colors 8)) (:foreground "black" :background "cyan")) (t (:inverse-video t))))
  '(trailing-whitespace ((t (:underline t :foreground "#d70000" :background nil))))
- '(whitespace-trailing ((t (:underline t :foreground "#00afaf" :background nil))))
- '(whitespace-tab ((t (:underline t :foreground "#00afaf" :background nil))))
- '(whitespace-space ((t (:underline t :foreground "#00afaf" :background nil))))
- '(whitespace-empty ((t (:underline t :foreground "#585858" :background nil))))
+ '(whitespace-trailing ((t (:underline t :background "#262626" :forground nil ))))
+ '(whitespace-tab ((t (:background "#262626"))))
+ '(whitespace-space ((t (:background "#262626"))))
+ '(whitespace-empty ((t (:background "#262626"))))
 
  '(font-lock-builtin-face ((t (:foreground "#af005f"))))
  '(font-lock-comment-delimiter-face ((default (:inherit (font-lock-comment-face)))))
@@ -69,15 +69,17 @@
 
  '(isearch ((((class color) (min-colors 88) (background light)) (:foreground "lightskyblue1" :background "magenta3")) (((class color) (min-colors 88) (background dark)) (:foreground "brown4" :background "palevioletred2")) (((class color) (min-colors 16)) (:foreground "cyan1" :background "magenta4")) (((class color) (min-colors 8)) (:foreground "cyan1" :background "magenta4")) (t (:inverse-video t))))
  '(isearch-fail ((((class color) (min-colors 88) (background light)) (:background "RosyBrown1")) (((class color) (min-colors 88) (background dark)) (:background "red4")) (((class color) (min-colors 16)) (:background "red")) (((class color) (min-colors 8)) (:background "red")) (((class color grayscale)) (:foreground "grey")) (t (:inverse-video t))))
- '(lazy-highlight ((t (:background "magenta" :foreground "black"))))
+ '(lazy-highlight ((t (:background "#af005f" :foreground "black"))))
  '(match ((t (:background "yellow1" :foreground "color-18"))))
  '(next-error ((t (:inherit (region)))))
  '(query-replace ((t (:inherit (isearch)))))
  '(tuareg-font-lock-operator-face ((t (:foreground "brightyellow"))))
 
-;;Flymake faces
+;; On the fly rrors
  '(flymake-errline ((t (:background nil :foreground "#d70000"))))
  '(flymake-warnline ((t (:background nil :foreground "#d75f00"))))
+ '(flycheck-error ((t (:underline t :background nil :foreground "#d70000"))))
+ '(flycheck-warning ((t (:underline t  :background nil :foreground "#d75f00"))))
 
 ;;Tuareg faces
 '(tuareg-font-lock-operator-face ((t (:foreground "#7070FF"))))
