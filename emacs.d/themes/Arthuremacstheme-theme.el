@@ -75,9 +75,11 @@
  '(query-replace ((t (:inherit (isearch)))))
  '(tuareg-font-lock-operator-face ((t (:foreground "brightyellow"))))
 
-;;Flymake faces
+;; On the fly rrors
  '(flymake-errline ((t (:background nil :foreground "#d70000"))))
  '(flymake-warnline ((t (:background nil :foreground "#d75f00"))))
+ '(flycheck-error ((t (:underline t :background nil :foreground "#d70000"))))
+ '(flycheck-warning ((t (:underline t  :background nil :foreground "#d75f00"))))
 
 ;;Tuareg faces
 '(tuareg-font-lock-operator-face ((t (:foreground "#7070FF"))))
