@@ -239,6 +239,7 @@
  '(web-mode-html-attr-name-face ((t (:foreground "#585858"))))
  '(flycheck-error ((t (:foreground "#d70000" :underline t))))
  '(flycheck-warning ((t (:foreground "#d75f00" :underline t))))
+ '(git-commit-summary-face ((t (:foreground "#0087ff"))))
  )
 
 (global-unset-key (kbd "<backtab>"))
