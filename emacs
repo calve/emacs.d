@@ -237,6 +237,8 @@
  '(web-mode-html-tag-face ((t (:foreground "#585858"))))
  '(web-mode-html-tag-bracket-face ((t (:foreground "#585858"))))
  '(web-mode-html-attr-name-face ((t (:foreground "#585858"))))
+ '(flycheck-error ((t (:foreground "#d70000" :underline t))))
+ '(flycheck-warning ((t (:foreground "#d75f00" :underline t))))
  )
 
 (global-unset-key (kbd "<backtab>"))
