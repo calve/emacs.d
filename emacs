@@ -41,6 +41,32 @@
 (setq split-width-threshold 50)
 (setq window-min-width 30)
 
+;; Resize window interactively using tsrn
+(defun resize-window (&optional arg)    ; Hirose Yuuji and Bob Wiener
+  "*Resize window interactively."
+  (interactive "p")
+  (if (one-window-p) (error "Cannot resize sole window"))
+  (or arg (setq arg 1))
+  (let (c)
+    (catch 'done
+      (while t
+        (message
+         "h=heighten, s=shrink, w=widen, n=narrow (by %d);  1-9=unit, q=quit"
+         arg)
+        (setq c (read-char))
+        (condition-case ()
+            (cond
+             ((= c ?h) (enlarge-window arg))
+             ((= c ?s) (shrink-window arg))
+             ((= c ?w) (enlarge-window-horizontally arg))
+             ((= c ?n) (shrink-window-horizontally arg))
+             ((= c ?\^G) (keyboard-quit))
+             ((= c ?q) (throw 'done t))
+             ((and (> c ?0) (<= c ?9)) (setq arg (- c ?0)))
+             (t (beep)))
+          (error (beep)))))
+    (message "Done.")))
+
 ;; Use hunspell for grammar and syntax correction
 (setq ispell-program-name "hunspell")
 
@@ -105,6 +131,7 @@
    php-eldoc
    php-mode
    pkgbuild-mode
+   polymode
    popup
    rainbow-mode
    color-theme-solarized
