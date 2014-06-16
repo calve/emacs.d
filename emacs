@@ -131,7 +131,6 @@
    php-eldoc
    php-mode
    pkgbuild-mode
-   polymode
    popup
    rainbow-mode
    color-theme-solarized
