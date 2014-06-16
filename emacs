@@ -20,6 +20,7 @@
 (global-set-key (kbd "C-ç") 'other-window)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-.") 'resize-window)
 
 ;; Indent with spaces only
 (setq-default indent-tabs-mode nil)
