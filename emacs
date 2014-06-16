@@ -117,7 +117,6 @@
  my:el-get-packages
  '(el-get; el-get is self-hosting
    company-mode
-   autopair
    anaconda-mode
    c-eldoc
    color-theme                ; nice looking emacs
@@ -133,6 +132,7 @@
    pkgbuild-mode
    popup
    rainbow-mode
+   smartparens
    color-theme-solarized
    tuareg-mode
    xterm-color
@@ -160,10 +160,6 @@
 
 ;;Show function prototype
 (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
-
-;;autopair is about automagically insert closing parenthesis
-(require 'autopair)
-(autopair-global-mode 1)
 
 ;;pkgbuild is how to construct an arch linux package
 (autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
