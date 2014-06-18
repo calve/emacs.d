@@ -251,18 +251,21 @@
  '(custom-safe-themes (quote ("1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "52712f2b6807d4ba4985cc8df0c1a186846e87c7fcf6d43a5c84d6584c5f4ad3" "2fbaf3d9682f8d0d08262e062e97dad1ef062622f8ebfdb13098fcd7a7d76436" default)))
  '(magit-diff-options nil)
  '(ps-default-fg "black" t))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:foreground "#808080" :background nil :foundry "default" :family "default"))))
- '(web-mode-html-tag-face ((t (:foreground "#585858"))))
- '(web-mode-html-tag-bracket-face ((t (:foreground "#585858"))))
- '(web-mode-html-attr-name-face ((t (:foreground "#585858"))))
  '(flycheck-error ((t (:foreground "#d70000" :underline t))))
  '(flycheck-warning ((t (:foreground "#d75f00" :underline t))))
  '(git-commit-summary-face ((t (:foreground "#0087ff"))))
+ '(web-mode-html-attr-name-face ((t (:foreground "#585858"))))
+ '(web-mode-html-tag-bracket-face ((t (:foreground "#585858"))))
+ '(web-mode-html-tag-face ((t (:foreground "#585858"))))
+ '(whitespace-tab ((t (:background "#585858" t))))
+ '(whitespace-trailing ((t (:underline t))))
  )
 
 (global-unset-key (kbd "<backtab>"))
