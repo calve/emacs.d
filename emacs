@@ -206,6 +206,7 @@
 (add-hook 'python-mode-hook 'anaconda-mode)
 (add-hook 'python-mode-hook 'anaconda-eldoc)
 (add-hook 'python-mode-hook (add-to-list 'company-backends 'company-anaconda))
+(setq-default flycheck-flake8-maximum-line-length 120)
 
 
 ;; whitespaces configuration, mostly show tabulations
