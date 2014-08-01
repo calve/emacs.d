@@ -42,6 +42,14 @@
 (setq split-width-threshold 50)
 (setq window-min-width 30)
 
+;; Open a file by sudo over ssh
+;; C-x C-f /sudo:root@host[#port]:/path/to/file
+;(set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
+(set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/sshx:%h:"))))
+(setq-default tramp-default-method "sshx")
+;; only use bash, zsh is useless with tramp
+(eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
+
 ;; Resize window interactively using tsrn
 (defun resize-window (&optional arg)    ; Hirose Yuuji and Bob Wiener
   "*Resize window interactively."
