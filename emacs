@@ -221,6 +221,10 @@
 (setq whitespace-style (quote (face tabs tab-mark trailing empty)))
 (global-whitespace-mode)
 
+
+;; saltstack config file are usually yaml
+(add-to-list 'auto-mode-alist '("\\.sls\\'" . yaml-mode))
+
 ;; tms prevention with god-mode
 (require 'god-mode)
 (global-set-key (kbd "œ") 'god-mode-all)
