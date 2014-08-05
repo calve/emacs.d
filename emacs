@@ -2,8 +2,8 @@
 (add-to-list 'load-path "~/.emacs.d")
 
 
-(normal-top-level-add-to-load-path '("."))
-(normal-top-level-add-subdirs-to-load-path)
+;;(normal-top-level-add-to-load-path '("."))
+;;(normal-top-level-add-subdirs-to-load-path)
 
 ;;This key will kill the active buffer without any prompting whatsoever.
 (defun kill-this-buffer ()
