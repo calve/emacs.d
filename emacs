@@ -2,8 +2,8 @@
 (add-to-list 'load-path "~/.emacs.d")
 
 
-(normal-top-level-add-to-load-path '("."))
-(normal-top-level-add-subdirs-to-load-path)
+;;(normal-top-level-add-to-load-path '("."))
+;;(normal-top-level-add-subdirs-to-load-path)
 
 ;;This key will kill the active buffer without any prompting whatsoever.
 (defun kill-this-buffer ()
@@ -41,6 +41,14 @@
 (setq split-height-threshold 0)
 (setq split-width-threshold 50)
 (setq window-min-width 30)
+
+;; Open a file by sudo over ssh
+;; C-x C-f /sudo:root@host[#port]:/path/to/file
+;(set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
+(set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/sshx:%h:"))))
+(setq-default tramp-default-method "sshx")
+;; only use bash, zsh is useless with tramp
+(eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
 
 ;; Resize window interactively using tsrn
 (defun resize-window (&optional arg)    ; Hirose Yuuji and Bob Wiener
@@ -205,12 +213,16 @@
 ;; python eldoc and completion
 (add-hook 'python-mode-hook 'eldoc-mode)
 (add-hook 'python-mode-hook 'anaconda-mode)
-;(add-hook 'python-mode-hook (add-to-list 'company-backends 'company-anaconda))
+(setq-default flycheck-flake8-maximum-line-length 120)
 
 
 ;; whitespaces configuration, mostly show tabulations
 (setq whitespace-style (quote (face tabs tab-mark trailing empty)))
 (global-whitespace-mode)
+
+
+;; saltstack config file are usually yaml
+(add-to-list 'auto-mode-alist '("\\.sls\\'" . yaml-mode))
 
 ;; tms prevention with god-mode
 (require 'god-mode)
@@ -244,7 +256,7 @@
 (define-key god-local-mode-map (kbd "b") 'isearch-forward)
 (define-key god-local-mode-map (kbd "f") 'isearch-backward)
 (global-set-key (kbd "C-x C-b") 'save-buffer) ;; That is translated C-x C-s
-(global-set-key (kbd "C-x C-r") 'ido-find-file) ;; That is translated C-x C-s
+(global-set-key (kbd "C-x C-r") 'ido-find-file) ;; That is translated C-x C-f
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
