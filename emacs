@@ -49,6 +49,8 @@
 (setq-default tramp-default-method "sshx")
 ;; only use bash, zsh is useless with tramp
 (eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
+;; autosave on localhost
+(setq tramp-auto-save-directory "~/emacs/tramp-autosave")
 
 ;; Resize window interactively using tsrn
 (defun resize-window (&optional arg)    ; Hirose Yuuji and Bob Wiener
