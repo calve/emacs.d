@@ -203,9 +203,9 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; python eldoc and completion
+(add-hook 'python-mode-hook 'eldoc-mode)
 (add-hook 'python-mode-hook 'anaconda-mode)
-(add-hook 'python-mode-hook 'anaconda-eldoc)
-(add-hook 'python-mode-hook (add-to-list 'company-backends 'company-anaconda))
+;(add-hook 'python-mode-hook (add-to-list 'company-backends 'company-anaconda))
 
 
 ;; whitespaces configuration, mostly show tabulations
