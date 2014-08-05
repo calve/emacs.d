@@ -226,6 +226,10 @@
 (add-hook 'god-mode-enabled-hook 'god-mode-modeline)
 (add-hook 'god-mode-disabled-hook 'god-mode-modeline)
 
+
+;; stop insert closing parenthesis
+(smartparens-global-mode)
+
 ;;a try to swap home keys
 (define-key key-translation-map "\C-b" "\C-s")
 (define-key key-translation-map "\C-s" "\C-b")
