@@ -253,7 +253,7 @@
 (define-key god-local-mode-map (kbd "b") 'isearch-forward)
 (define-key god-local-mode-map (kbd "f") 'isearch-backward)
 (global-set-key (kbd "C-x C-b") 'save-buffer) ;; That is translated C-x C-s
-(global-set-key (kbd "C-x C-r") 'ido-find-file) ;; That is translated C-x C-s
+(global-set-key (kbd "C-x C-r") 'ido-find-file) ;; That is translated C-x C-f
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
