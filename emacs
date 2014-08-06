@@ -213,9 +213,8 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; python eldoc and completion
+(add-hook 'python-mode-hook 'eldoc-mode)
 (add-hook 'python-mode-hook 'anaconda-mode)
-(add-hook 'python-mode-hook 'anaconda-eldoc)
-(add-hook 'python-mode-hook (add-to-list 'company-backends 'company-anaconda))
 (setq-default flycheck-flake8-maximum-line-length 120)
 
 
@@ -240,6 +239,10 @@
                   (set-face-background 'mode-line-inactive "grey10")))))
 (add-hook 'god-mode-enabled-hook 'god-mode-modeline)
 (add-hook 'god-mode-disabled-hook 'god-mode-modeline)
+
+
+;; stop insert closing parenthesis
+(smartparens-global-mode)
 
 ;;a try to swap home keys
 (define-key key-translation-map "\C-b" "\C-s")
