@@ -42,6 +42,13 @@
 (setq split-width-threshold 50)
 (setq window-min-width 30)
 
+;; Better buffer names
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+(setq uniquify-separator "/")
+(setq uniquify-after-kill-buffer-p t) ; rename after killing uniquified
+(setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers)
+
 ;; Open a file by sudo over ssh
 ;; C-x C-f /sudo:root@host[#port]:/path/to/file
 ;(set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
