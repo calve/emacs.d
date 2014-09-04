@@ -42,6 +42,13 @@
 (setq split-width-threshold 50)
 (setq window-min-width 30)
 
+;; Better buffer names
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+(setq uniquify-separator "/")
+(setq uniquify-after-kill-buffer-p t) ; rename after killing uniquified
+(setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers)
+
 ;; Open a file by sudo over ssh
 ;; C-x C-f /sudo:root@host[#port]:/path/to/file
 ;(set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
@@ -49,6 +56,8 @@
 (setq-default tramp-default-method "sshx")
 ;; only use bash, zsh is useless with tramp
 (eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
+;; autosave on localhost
+(setq tramp-auto-save-directory "~/emacs/tramp-autosave")
 
 
 (defun window-toggle-split-direction ()
@@ -294,7 +303,9 @@ i.e. change right window to bottom, or change bottom window to right."
  '(ac-quick-help-delay 0.2)
  '(ac-use-fuzzy t)
  '(custom-safe-themes (quote ("1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "52712f2b6807d4ba4985cc8df0c1a186846e87c7fcf6d43a5c84d6584c5f4ad3" "2fbaf3d9682f8d0d08262e062e97dad1ef062622f8ebfdb13098fcd7a7d76436" default)))
+ '(magit-commit-popup-defaults nil)
  '(magit-diff-options nil)
+ '(magit-log-popup-defaults (quote ("--graph" "--decorate" "--all")))
  '(ps-default-fg "black" t))
 
 (custom-set-faces
