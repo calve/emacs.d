@@ -215,6 +215,14 @@ i.e. change right window to bottom, or change bottom window to right."
 (setq ps-default-fg t)
 (setq ps-default-bg t)
 
+;; disable spell checking on git-commit
+(eval-after-load "git-commit-mode"
+  '(cond
+    ((boundp 'git-commit-mode-hook) ; old
+     (remove-hook 'git-commit-mode-hook 'flyspell-mode))
+    ((boundp 'git-commit-setup-hook) ; new
+     (remove-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell))))
+
 ;; web mode is cool for editing html templates
 
 (require 'web-mode)
