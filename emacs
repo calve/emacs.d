@@ -223,8 +223,10 @@ i.e. change right window to bottom, or change bottom window to right."
     ((boundp 'git-commit-setup-hook) ; new
      (remove-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell))))
 
-;; web mode is cool for editing html templates
+;; disable scss compilation on save
+(setq scss-compile-at-save nil)
 
+;; web mode is cool for editing html templates
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.[gj]sp\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
