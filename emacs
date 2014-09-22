@@ -173,12 +173,14 @@ i.e. change right window to bottom, or change bottom window to right."
    god-mode
    js2-mode
    markdown-mode
+   magit
    php-eldoc
    php-mode
    pkgbuild-mode
    popup
    rainbow-mode
    smartparens
+   smex
    color-theme-solarized
    tuareg-mode
    xterm-color
