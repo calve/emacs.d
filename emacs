@@ -290,6 +290,14 @@ i.e. change right window to bottom, or change bottom window to right."
 
 ;; stop insert closing parenthesis
 (smartparens-global-mode)
+(sp-local-pair 'web-mode "<%" "%>")
+;;; markdown-mode
+(sp-with-modes '(markdown-mode gfm-mode rst-mode)
+  (sp-local-pair "*" "*")
+  (sp-local-pair "'" nil :actions nil)
+  (sp-local-tag "2" "**" "**")
+  (sp-local-tag "s" "```scheme" "```")
+  (sp-local-tag "<"  "<_>" "</_>" :transform 'sp-match-sgml-tags))
 
 ;;a try to swap home keys
 (define-key key-translation-map "\C-b" "\C-s")
