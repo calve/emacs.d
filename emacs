@@ -179,6 +179,7 @@ i.e. change right window to bottom, or change bottom window to right."
    popup
    rainbow-mode
    smartparens
+   smex
    color-theme-solarized
    tuareg-mode
    xterm-color
