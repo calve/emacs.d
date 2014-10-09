@@ -173,6 +173,7 @@ i.e. change right window to bottom, or change bottom window to right."
    god-mode
    js2-mode
    markdown-mode
+   magit
    php-eldoc
    php-mode
    pkgbuild-mode
@@ -216,8 +217,18 @@ i.e. change right window to bottom, or change bottom window to right."
 (setq ps-default-fg t)
 (setq ps-default-bg t)
 
-;; web mode is cool for editing html templates
+;; disable spell checking on git-commit
+(eval-after-load "git-commit-mode"
+  '(cond
+    ((boundp 'git-commit-mode-hook) ; old
+     (remove-hook 'git-commit-mode-hook 'flyspell-mode))
+    ((boundp 'git-commit-setup-hook) ; new
+     (remove-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell))))
 
+;; disable scss compilation on save
+(setq scss-compile-at-save nil)
+
+;; web mode is cool for editing html templates
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.[gj]sp\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
@@ -279,6 +290,14 @@ i.e. change right window to bottom, or change bottom window to right."
 
 ;; stop insert closing parenthesis
 (smartparens-global-mode)
+(sp-local-pair 'web-mode "<%" "%>")
+;;; markdown-mode
+(sp-with-modes '(markdown-mode gfm-mode rst-mode)
+  (sp-local-pair "*" "*")
+  (sp-local-pair "'" nil :actions nil)
+  (sp-local-tag "2" "**" "**")
+  (sp-local-tag "s" "```scheme" "```")
+  (sp-local-tag "<"  "<_>" "</_>" :transform 'sp-match-sgml-tags))
 
 ;;a try to swap home keys
 (define-key key-translation-map "\C-b" "\C-s")
