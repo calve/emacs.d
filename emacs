@@ -340,7 +340,7 @@ i.e. change right window to bottom, or change bottom window to right."
  '(web-mode-html-attr-name-face ((t (:foreground "#585858"))))
  '(web-mode-html-tag-bracket-face ((t (:foreground "#585858"))))
  '(web-mode-html-tag-face ((t (:foreground "#585858"))))
- '(whitespace-tab ((t (:background "#585858" t))))
+ '(whitespace-tab ((t (:foreground "#1010FF" t))))
  '(whitespace-trailing ((t (:underline t))))
  )
 
