@@ -13,6 +13,7 @@
 ;; Key binding
 (global-set-key (kbd "C-x C-k") 'kill-this-buffer)
 (global-set-key (kbd "C-c g") 'magit-status)
+(global-set-key (kbd "C-c f") 'flyspell-buffer)
 (global-set-key (kbd "M-g") 'magit-status)
 (global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key (kbd "<backtab>") 'other-window)
