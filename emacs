@@ -157,21 +157,6 @@ i.e. change right window to bottom, or change bottom window to right."
 
 (el-get 'sync)
 
-;;All the packages i want
-;; set local recipes, el-get-sources should only accept PLIST element
-(setq
- el-get-sources
- '((:name smex; a better (ido like) M-x
-        :after (lambda ()
-                 (setq smex-save-file "~/.emacs.d/.smex-items")
-                 (global-set-key (kbd "M-x") 'smex)
-                 (global-set-key (kbd "M-X") 'smex-major-mode-commands)))
-
- (:name magit; git meet emacs, and a binding
-        :after (lambda ()
-                 (global-set-key (kbd "M-g") 'magit-status))))
-)
-
 ;; now set our own packages
 (setq
  my:el-get-packages
