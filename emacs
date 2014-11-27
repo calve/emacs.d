@@ -143,22 +143,10 @@ i.e. change right window to bottom, or change bottom window to right."
 (unless (file-directory-p el-get-recipe-path-elpa)
   (el-get-elpa-build-local-recipes))
 
+(add-to-list 'el-get-recipe-path "~/.emacs.d/custom-recipes")
 (el-get 'sync)
 
 ;;All the packages i want
-;; set local recipes, el-get-sources should only accept PLIST element
-(setq
- el-get-sources
- '((:name smex; a better (ido like) M-x
-        :after (lambda ()
-                 (setq smex-save-file "~/.emacs.d/.smex-items")
-                 (global-set-key (kbd "M-x") 'smex)
-                 (global-set-key (kbd "M-X") 'smex-major-mode-commands)))
-
- (:name magit; git meet emacs, and a binding
-        :after (lambda ()
-                 (global-set-key (kbd "M-g") 'magit-status))))
-)
 
 ;; now set our own packages
 (setq
@@ -170,12 +158,13 @@ i.e. change right window to bottom, or change bottom window to right."
    color-theme                ; nice looking emacs
    color-theme-tango
    flycheck
+   git-modes-next
    git-commit-mode
    git-rebase-mode
    god-mode
    js2-mode
    markdown-mode
-   magit
+   magit-next
    php-eldoc
    php-mode
    pkgbuild-mode
@@ -183,7 +172,7 @@ i.e. change right window to bottom, or change bottom window to right."
    rainbow-mode
    smartparens
    smex
-   color-theme-solarized
+   color-theme-solarized-calve
    tuareg-mode
    xterm-color
    yasnippet
@@ -195,14 +184,14 @@ i.e. change right window to bottom, or change bottom window to right."
        my:el-get-packages
        (loop for src in el-get-sources collect (el-get-source-name src))))
 
+;; install new packages and init already installed packages
+(el-get 'sync my:el-get-packages)
+
 ;; Use solarized colors
 (setq solarized-termcolors 256)
 
 (load-theme 'solarized-dark t)
 (setq solarized-diff-mode "high")
-
-;; install new packages and init already installed packages
-(el-get 'sync my:el-get-packages)
 
 ;; ;; Now we can load elpa stuff
 ;; Load company mode for every buffer
