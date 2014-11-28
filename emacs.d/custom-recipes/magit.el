@@ -5,11 +5,11 @@
        :pkgname "magit/magit"
        :checkout "next"
        :depends (cl-lib git-modes)
-       :info "."
+       ;;:info "."
        ;; use the Makefile to produce the info manual, el-get can
        ;; handle compilation and autoloads on its own.
        :compile "magit.*\.el\\'"
-       :build `(("make" "docs"))
+       :build `(("make" "lisp"))
        :build/berkeley-unix (("gmake" "docs"))
        ;; assume windows lacks make and makeinfo
        :build/windows-nt (progn nil))

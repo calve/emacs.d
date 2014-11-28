@@ -158,13 +158,11 @@ i.e. change right window to bottom, or change bottom window to right."
    color-theme                ; nice looking emacs
    color-theme-tango
    flycheck
-   git-modes-next
-   git-commit-mode
-   git-rebase-mode
+   git-modes
    god-mode
    js2-mode
    markdown-mode
-   magit-next
+   magit
    php-eldoc
    php-mode
    pkgbuild-mode
@@ -172,7 +170,7 @@ i.e. change right window to bottom, or change bottom window to right."
    rainbow-mode
    smartparens
    smex
-   color-theme-solarized-calve
+   color-theme-solarized
    tuareg-mode
    xterm-color
    yasnippet
