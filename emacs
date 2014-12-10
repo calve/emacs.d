@@ -240,6 +240,7 @@ i.e. change right window to bottom, or change bottom window to right."
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
+(setq-default web-mode-markup-indent-offset 2)
 
 ;; settings gud/gdb
 (setq gdb-show-main t)
