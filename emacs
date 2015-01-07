@@ -139,6 +139,20 @@ i.e. change right window to bottom, or change bottom window to right."
           (error (beep)))))
     (message "Done.")))
 
+;; just-one-space in rectangles
+(require 'rect)
+(defun just-one-space-in-rect-line (start end)
+  (save-restriction
+    (save-match-data
+      (narrow-to-region (+ (point) start)
+                        (+ (point) end))
+      (while (re-search-forward "\\s-+" nil t)
+        (replace-match " ")))))
+(defun just-one-space-in-rect (start end)
+  "replace all whitespace in the rectangle with single spaces"
+  (interactive "r")
+  (apply-on-rectangle 'just-one-space-in-rect-line start end))
+
 ;; Use hunspell for grammar and syntax correction
 (setq ispell-program-name "hunspell")
 
@@ -169,8 +183,6 @@ i.e. change right window to bottom, or change bottom window to right."
 
 (add-to-list 'el-get-recipe-path "~/.emacs.d/custom-recipes")
 (el-get 'sync)
-
-;;All the packages i want
 
 ;; now set our own packages
 (setq
@@ -252,6 +264,7 @@ i.e. change right window to bottom, or change bottom window to right."
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
+(setq-default web-mode-markup-indent-offset 2)
 
 ;; settings gud/gdb
 (setq gdb-show-main t)
