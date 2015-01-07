@@ -1,9 +1,3 @@
-;;Various found stuff
-(add-to-list 'load-path "~/.emacs.d")
-
-
-;;(normal-top-level-add-to-load-path '("."))
-;;(normal-top-level-add-subdirs-to-load-path)
 
 ;;This key will kill the active buffer without any prompting whatsoever.
 (defun kill-this-buffer ()
@@ -54,13 +48,8 @@
 
 ;; Open a file by sudo over ssh
 ;; C-x C-f /sudo:root@host[#port]:/path/to/file
-;(set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
 (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/sshx:%h:"))))
-(setq-default tramp-default-method "sshx")
-;; only use bash, zsh is useless with tramp
-(eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
-;; autosave on localhost
-(setq tramp-auto-save-directory "~/emacs/tramp-autosave")
+
 ;; define common mistakes
 (define-abbrev-table 'global-abbrev-table '
   (("necessaire" "nécessaire" nil 0)
