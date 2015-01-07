@@ -22,7 +22,8 @@
 (global-set-key (kbd "C-ç") 'other-window)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-.") 'resize-window)
+(global-set-key (kbd "C-c w") 'resize-window)
+(global-set-key (kbd "C-c t") 'resize-cell)
 
 ;; Indent with spaces only
 (setq-default indent-tabs-mode nil)
@@ -113,7 +114,36 @@ i.e. change right window to bottom, or change bottom window to right."
              ((= c ?w) (enlarge-window-horizontally arg))
              ((= c ?n) (shrink-window-horizontally arg))
              ((= c ?.) (window-toggle-split-direction))
-             ((= c ?\^G) (keyboard-quit))
+             ((= c 13) (throw 'done t))
+             ((= c ?q) (throw 'done t))
+             ((and (> c ?0) (<= c ?9)) (setq arg (- c ?0)))
+             (t (beep)))
+          (error (beep)))))
+    (message "Done.")))
+
+;; An interactive command to manage table-cell easily
+(defun resize-cell (&optional arg)    ; Adapted from Hirose Yuuji and Bob Wiener
+  "*Resize window interactively."
+  (interactive "p")
+  (or arg (setq arg 1))
+  (table-recognize)
+  (let (c)
+    (catch 'done
+      (while t
+        (message
+         "h=heighten, s=shrink, w=widen, n=narrow, r=insert-row, c=insert-column, d=delete (by %d);  1-9=unit, q=quit"
+         arg)
+        (setq c (read-char))
+        (condition-case ()
+            (cond
+             ((= c ?h) (table-heighten-cell arg))
+             ((= c ?s) (table-shorten-cell arg))
+             ((= c ?w) (table-widen-cell arg))
+             ((= c ?n) (table-narrow-cell arg))
+             ((= c ?r) (table-insert-row arg))
+             ((= c ?d) (table-delete-row arg))
+             ((= c ?c) (table-insert-column arg))
+             ((= c 13) (throw 'done t))
              ((= c ?q) (throw 'done t))
              ((and (> c ?0) (<= c ?9)) (setq arg (- c ?0)))
              (t (beep)))
