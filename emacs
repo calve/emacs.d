@@ -60,6 +60,11 @@
 (eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
 ;; autosave on localhost
 (setq tramp-auto-save-directory "~/emacs/tramp-autosave")
+;; define common mistakes
+(define-abbrev-table 'global-abbrev-table '
+  (("necessaire" "nécessaire" nil 0)
+   ("developpement" "développement" nil 0)
+  ))
 
 
 (defun window-toggle-split-direction ()
