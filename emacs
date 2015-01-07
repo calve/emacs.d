@@ -335,7 +335,12 @@ i.e. change right window to bottom, or change bottom window to right."
  ;; If there is more than one, they won't work right.
  '(ac-quick-help-delay 0.2)
  '(ac-use-fuzzy t)
- '(custom-safe-themes (quote ("1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "52712f2b6807d4ba4985cc8df0c1a186846e87c7fcf6d43a5c84d6584c5f4ad3" "2fbaf3d9682f8d0d08262e062e97dad1ef062622f8ebfdb13098fcd7a7d76436" default)))
+ '(custom-safe-themes
+   (quote
+    ("1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "52712f2b6807d4ba4985cc8df0c1a186846e87c7fcf6d43a5c84d6584c5f4ad3" "2fbaf3d9682f8d0d08262e062e97dad1ef062622f8ebfdb13098fcd7a7d76436" default)))
+ '(elfeed-feeds
+   (quote
+    ("http://nvd.nist.gov/download/nvd-rss-analyzed.xml" "http://nvd.nist.gov/download/nvd-rss.xml" "https://community.rapid7.com/community/metasploit/blog/feeds/posts" "http://seclists.org/rss/fulldisclosure.rss" "https://community.rapid7.com/community/infosec/blog/feeds/posts" "http://www.justanimedubbed.tv/watch/south-park/feed/" "http://www.justanimedubbed.tv/watch/american-dad/feed/" "https://github.com/calve.private.atom?token=AEHIJ9jAeCtc4jwKuR04c2mpeE5OoYS8ks6yibpqwA==" "http://planet.emacsen.org/atom.xml" "http://fr.lolix.org/jobs.rss" "http://transports.blog.lemonde.fr/feed/" "https://www.archlinux.org/feeds/news/" "http://www.spi0n.com/zapping-web/feed/" "http://www.maitre-eolas.fr/feed/atom" "http://korben.info/feed/atom" "http://linuxfr.org/journaux.atom" "http://linuxfr.org/news.atom" "https://github.com/calve.private.atom?token=70962d69f52ea296838c28ee999960ab")))
  '(magit-commit-popup-defaults nil)
  '(magit-diff-options nil)
  '(magit-log-popup-defaults (quote ("--graph" "--decorate" "--all")))
