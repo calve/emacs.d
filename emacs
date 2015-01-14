@@ -1,9 +1,3 @@
-;;Various found stuff
-(add-to-list 'load-path "~/.emacs.d")
-
-
-;;(normal-top-level-add-to-load-path '("."))
-;;(normal-top-level-add-subdirs-to-load-path)
 
 ;;This key will kill the active buffer without any prompting whatsoever.
 (defun kill-this-buffer ()
@@ -22,7 +16,8 @@
 (global-set-key (kbd "C-ç") 'other-window)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-.") 'resize-window)
+(global-set-key (kbd "C-c w") 'resize-window)
+(global-set-key (kbd "C-c t") 'resize-cell)
 
 ;; Indent with spaces only
 (setq-default indent-tabs-mode nil)
@@ -53,13 +48,13 @@
 
 ;; Open a file by sudo over ssh
 ;; C-x C-f /sudo:root@host[#port]:/path/to/file
-;(set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
 (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/sshx:%h:"))))
-(setq-default tramp-default-method "sshx")
-;; only use bash, zsh is useless with tramp
-(eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
-;; autosave on localhost
-(setq tramp-auto-save-directory "~/emacs/tramp-autosave")
+
+;; define common mistakes
+(define-abbrev-table 'global-abbrev-table '
+  (("necessaire" "nécessaire" nil 0)
+   ("developpement" "développement" nil 0)
+  ))
 
 
 (defun window-toggle-split-direction ()
@@ -108,7 +103,36 @@ i.e. change right window to bottom, or change bottom window to right."
              ((= c ?w) (enlarge-window-horizontally arg))
              ((= c ?n) (shrink-window-horizontally arg))
              ((= c ?.) (window-toggle-split-direction))
-             ((= c ?\^G) (keyboard-quit))
+             ((= c 13) (throw 'done t))
+             ((= c ?q) (throw 'done t))
+             ((and (> c ?0) (<= c ?9)) (setq arg (- c ?0)))
+             (t (beep)))
+          (error (beep)))))
+    (message "Done.")))
+
+;; An interactive command to manage table-cell easily
+(defun resize-cell (&optional arg)    ; Adapted from Hirose Yuuji and Bob Wiener
+  "*Resize window interactively."
+  (interactive "p")
+  (or arg (setq arg 1))
+  (table-recognize)
+  (let (c)
+    (catch 'done
+      (while t
+        (message
+         "h=heighten, s=shrink, w=widen, n=narrow, r=insert-row, c=insert-column, d=delete (by %d);  1-9=unit, q=quit"
+         arg)
+        (setq c (read-char))
+        (condition-case ()
+            (cond
+             ((= c ?h) (table-heighten-cell arg))
+             ((= c ?s) (table-shorten-cell arg))
+             ((= c ?w) (table-widen-cell arg))
+             ((= c ?n) (table-narrow-cell arg))
+             ((= c ?r) (table-insert-row arg))
+             ((= c ?d) (table-delete-row arg))
+             ((= c ?c) (table-insert-column arg))
+             ((= c 13) (throw 'done t))
              ((= c ?q) (throw 'done t))
              ((and (> c ?0) (<= c ?9)) (setq arg (- c ?0)))
              (t (beep)))
@@ -157,6 +181,7 @@ i.e. change right window to bottom, or change bottom window to right."
 (unless (file-directory-p el-get-recipe-path-elpa)
   (el-get-elpa-build-local-recipes))
 
+(add-to-list 'el-get-recipe-path "~/.emacs.d/custom-recipes")
 (el-get 'sync)
 
 ;; now set our own packages
@@ -169,8 +194,7 @@ i.e. change right window to bottom, or change bottom window to right."
    color-theme                ; nice looking emacs
    color-theme-tango
    flycheck
-   git-commit-mode
-   git-rebase-mode
+   git-modes
    god-mode
    js2-mode
    markdown-mode
@@ -194,14 +218,14 @@ i.e. change right window to bottom, or change bottom window to right."
        my:el-get-packages
        (loop for src in el-get-sources collect (el-get-source-name src))))
 
+;; install new packages and init already installed packages
+(el-get 'sync my:el-get-packages)
+
 ;; Use solarized colors
 (setq solarized-termcolors 256)
 
 (load-theme 'solarized-dark t)
 (setq solarized-diff-mode "high")
-
-;; install new packages and init already installed packages
-(el-get 'sync my:el-get-packages)
 
 ;; ;; Now we can load elpa stuff
 ;; Load company mode for every buffer
@@ -326,7 +350,12 @@ i.e. change right window to bottom, or change bottom window to right."
  ;; If there is more than one, they won't work right.
  '(ac-quick-help-delay 0.2)
  '(ac-use-fuzzy t)
- '(custom-safe-themes (quote ("1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "52712f2b6807d4ba4985cc8df0c1a186846e87c7fcf6d43a5c84d6584c5f4ad3" "2fbaf3d9682f8d0d08262e062e97dad1ef062622f8ebfdb13098fcd7a7d76436" default)))
+ '(custom-safe-themes
+   (quote
+    ("1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "52712f2b6807d4ba4985cc8df0c1a186846e87c7fcf6d43a5c84d6584c5f4ad3" "2fbaf3d9682f8d0d08262e062e97dad1ef062622f8ebfdb13098fcd7a7d76436" default)))
+ '(elfeed-feeds
+   (quote
+    ("http://nvd.nist.gov/download/nvd-rss-analyzed.xml" "http://nvd.nist.gov/download/nvd-rss.xml" "https://community.rapid7.com/community/metasploit/blog/feeds/posts" "http://seclists.org/rss/fulldisclosure.rss" "https://community.rapid7.com/community/infosec/blog/feeds/posts" "http://www.justanimedubbed.tv/watch/south-park/feed/" "http://www.justanimedubbed.tv/watch/american-dad/feed/" "https://github.com/calve.private.atom?token=AEHIJ9jAeCtc4jwKuR04c2mpeE5OoYS8ks6yibpqwA==" "http://planet.emacsen.org/atom.xml" "http://fr.lolix.org/jobs.rss" "http://transports.blog.lemonde.fr/feed/" "https://www.archlinux.org/feeds/news/" "http://www.spi0n.com/zapping-web/feed/" "http://www.maitre-eolas.fr/feed/atom" "http://korben.info/feed/atom" "http://linuxfr.org/journaux.atom" "http://linuxfr.org/news.atom" "https://github.com/calve.private.atom?token=70962d69f52ea296838c28ee999960ab")))
  '(magit-commit-popup-defaults nil)
  '(magit-diff-options nil)
  '(magit-log-popup-defaults (quote ("--graph" "--decorate" "--all")))
@@ -340,13 +369,12 @@ i.e. change right window to bottom, or change bottom window to right."
  '(default ((t (:foreground "#808080" :background nil :foundry "default" :family "default"))))
  '(flycheck-error ((t (:foreground "#d70000" :underline t))))
  '(flycheck-warning ((t (:foreground "#d75f00" :underline t))))
- '(git-commit-summary-face ((t (:foreground "#0087ff"))))
+ '(git-commit-summary-face ((t (:foreground "#0087ff"))) t)
  '(web-mode-html-attr-name-face ((t (:foreground "#585858"))))
  '(web-mode-html-tag-bracket-face ((t (:foreground "#585858"))))
  '(web-mode-html-tag-face ((t (:foreground "#585858"))))
  '(whitespace-tab ((t (:foreground "#1010FF" t))))
- '(whitespace-trailing ((t (:underline t))))
- )
+ '(whitespace-trailing ((t (:underline t)))))
 
 (global-unset-key (kbd "<backtab>"))
 (global-set-key (kbd "<backtab>") 'other-window)
