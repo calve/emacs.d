@@ -242,6 +242,8 @@ i.e. change right window to bottom, or change bottom window to right."
 (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
 (setq-default web-mode-markup-indent-offset 2)
 
+(add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
+
 ;; settings gud/gdb
 (setq gdb-show-main t)
 
