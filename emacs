@@ -233,6 +233,7 @@ i.e. change right window to bottom, or change bottom window to right."
 
 ;;Show function prototype
 (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
+(setq c-basic-offset 4)
 
 ;;pkgbuild is how to construct an arch linux package
 (autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
