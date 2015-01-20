@@ -223,9 +223,24 @@ i.e. change right window to bottom, or change bottom window to right."
 
 ;; Use solarized colors
 (setq solarized-termcolors 256)
-
-(load-theme 'solarized-dark t)
+(setq frame-background-mode 'dark)
 (setq solarized-diff-mode "high")
+
+(load-theme 'solarized t)
+
+;; keep a transparent background inside terminals
+(defun on-frame-open (frame)
+  (if (not (display-graphic-p frame))
+      (set-face-background 'default "unspecified-bg" frame)))
+(on-frame-open (selected-frame))
+(defun on-after-init ()
+  (unless (display-graphic-p (selected-frame))
+    (set-face-background 'default "unspecified-bg" (selected-frame))))
+(add-hook 'after-make-frame-functions 'on-frame-open)
+(add-hook 'window-setup-hook 'on-after-init)
+
+(enable-theme 'solarized)
+
 
 ;; ;; Now we can load elpa stuff
 ;; Load company mode for every buffer
