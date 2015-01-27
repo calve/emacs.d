@@ -343,6 +343,9 @@ i.e. change right window to bottom, or change bottom window to right."
   (sp-local-tag "s" "```scheme" "```")
   (sp-local-tag "<"  "<_>" "</_>" :transform 'sp-match-sgml-tags))
 
+;; tuareg should not skip phrase after eval
+(setq-default tuareg-skip-after-eval-phrase nil)
+
 ;;a try to swap home keys
 (define-key key-translation-map "\C-b" "\C-s")
 (define-key key-translation-map "\C-s" "\C-b")
