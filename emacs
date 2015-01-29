@@ -54,6 +54,7 @@
 (define-abbrev-table 'global-abbrev-table '
   (("necessaire" "nécessaire" nil 0)
    ("developpement" "développement" nil 0)
+   ("executer" "exécuter" nil 0)
   ))
 
 
