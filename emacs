@@ -120,7 +120,7 @@ i.e. change right window to bottom, or change bottom window to right."
     (catch 'done
       (while t
         (message
-         "h=heighten, s=shrink, w=widen, n=narrow, r=insert-row, c=insert-column, d=delete (by %d);  1-9=unit, q=quit"
+         "h=heighten, s=shrink, w=widen, n=narrow, r=insert-row, c=insert-column, d=delete-row, v=delete-column (by %d);  1-9=unit, q=quit"
          arg)
         (setq c (read-char))
         (condition-case ()
@@ -132,6 +132,7 @@ i.e. change right window to bottom, or change bottom window to right."
              ((= c ?r) (table-insert-row arg))
              ((= c ?d) (table-delete-row arg))
              ((= c ?c) (table-insert-column arg))
+             ((= c ?v) (table-delete-column arg))
              ((= c 13) (throw 'done t))
              ((= c ?q) (throw 'done t))
              ((and (> c ?0) (<= c ?9)) (setq arg (- c ?0)))
