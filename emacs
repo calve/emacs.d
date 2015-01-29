@@ -195,6 +195,7 @@ i.e. change right window to bottom, or change bottom window to right."
    c-eldoc
    color-theme                ; nice looking emacs
    color-theme-tango
+   dtrt-indent                ; autodetect indentation
    flycheck
    git-modes
    god-mode
@@ -225,9 +226,24 @@ i.e. change right window to bottom, or change bottom window to right."
 
 ;; Use solarized colors
 (setq solarized-termcolors 256)
-
-(load-theme 'solarized-dark t)
+(setq frame-background-mode 'dark)
 (setq solarized-diff-mode "high")
+
+(load-theme 'solarized t)
+
+;; keep a transparent background inside terminals
+(defun on-frame-open (frame)
+  (if (not (display-graphic-p frame))
+      (set-face-background 'default "unspecified-bg" frame)))
+(on-frame-open (selected-frame))
+(defun on-after-init ()
+  (unless (display-graphic-p (selected-frame))
+    (set-face-background 'default "unspecified-bg" (selected-frame))))
+(add-hook 'after-make-frame-functions 'on-frame-open)
+(add-hook 'window-setup-hook 'on-after-init)
+
+(enable-theme 'solarized)
+
 
 ;; ;; Now we can load elpa stuff
 ;; Load company mode for every buffer
@@ -268,6 +284,8 @@ i.e. change right window to bottom, or change bottom window to right."
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
 (setq-default web-mode-markup-indent-offset 2)
+
+(add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
 
 ;; settings gud/gdb
 (setq gdb-show-main t)
@@ -327,6 +345,9 @@ i.e. change right window to bottom, or change bottom window to right."
   (sp-local-tag "2" "**" "**")
   (sp-local-tag "s" "```scheme" "```")
   (sp-local-tag "<"  "<_>" "</_>" :transform 'sp-match-sgml-tags))
+
+;; tuareg should not skip phrase after eval
+(setq-default tuareg-skip-after-eval-phrase nil)
 
 ;;a try to swap home keys
 (define-key key-translation-map "\C-b" "\C-s")
