@@ -224,28 +224,11 @@ i.e. change right window to bottom, or change bottom window to right."
 ;; install new packages and init already installed packages
 (el-get 'sync my:el-get-packages)
 
-;; Use solarized colors
-(setq solarized-termcolors 256)
-(setq frame-background-mode 'dark)
-(setq solarized-diff-mode "high")
-
-(load-theme 'solarized t)
-
-;; keep a transparent background inside terminals
-(defun on-frame-open (frame)
-  (if (not (display-graphic-p frame))
-      (set-face-background 'default "unspecified-bg" frame)))
-(on-frame-open (selected-frame))
-(defun on-after-init ()
-  (unless (display-graphic-p (selected-frame))
-    (set-face-background 'default "unspecified-bg" (selected-frame))))
-(add-hook 'after-make-frame-functions 'on-frame-open)
-(add-hook 'window-setup-hook 'on-after-init)
-
-(enable-theme 'solarized)
-
-
 ;; ;; Now we can load elpa stuff
+
+;; Use the emacs incremental completion and narrowing selection framework
+(helm-mode 1)
+
 ;; Load company mode for every buffer
 (add-hook 'after-init-hook 'global-company-mode)
 
@@ -364,6 +347,26 @@ i.e. change right window to bottom, or change bottom window to right."
 (define-key god-local-mode-map (kbd "f") 'isearch-backward)
 (global-set-key (kbd "C-x C-b") 'save-buffer) ;; That is translated C-x C-s
 (global-set-key (kbd "C-x C-r") 'ido-find-file) ;; That is translated C-x C-f
+;; Use solarized colors
+(setq solarized-termcolors 256)
+(setq frame-background-mode 'dark)
+(setq solarized-diff-mode "high")
+
+(load-theme 'solarized t)
+
+;; keep a transparent background inside terminals
+(defun on-frame-open (frame)
+  (if (not (display-graphic-p frame))
+      (set-face-background 'default "unspecified-bg" frame)))
+(on-frame-open (selected-frame))
+(defun on-after-init ()
+  (unless (display-graphic-p (selected-frame))
+    (set-face-background 'default "unspecified-bg" (selected-frame))))
+(add-hook 'after-make-frame-functions 'on-frame-open)
+(add-hook 'window-setup-hook 'on-after-init)
+
+(enable-theme 'solarized)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
