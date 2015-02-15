@@ -5,19 +5,20 @@
   (kill-buffer (current-buffer)))
 
 ;; Key binding
-(global-set-key (kbd "C-x C-k") 'kill-this-buffer)
-(global-set-key (kbd "C-c g") 'magit-status)
-(global-set-key (kbd "C-c f") 'flyspell-buffer)
-(global-set-key (kbd "C-c SPC") 'whitespace-cleanup)
-(global-set-key (kbd "M-g") 'magit-status)
-(global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key (kbd "<backtab>") 'other-window)
-(global-set-key (kbd "C-é") 'control-mode)
-(global-set-key (kbd "C-ç") 'other-window)
-(global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "C-c w") 'resize-window)
+(global-set-key (kbd "<f5>") 'revert-buffer)
+(global-set-key (kbd "C-c SPC") 'whitespace-cleanup)
+(global-set-key (kbd "C-c f") 'flyspell-buffer)
+(global-set-key (kbd "C-c g") 'magit-status)
 (global-set-key (kbd "C-c t") 'resize-cell)
+(global-set-key (kbd "C-c w") 'resize-window)
+(global-set-key (kbd "C-x C-k") 'kill-this-buffer)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-ç") 'other-window)
+(global-set-key (kbd "C-é") 'control-mode)
+(global-set-key (kbd "M-g") 'magit-status)
+(global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "M-x") 'helm-M-x)
 
 ;; Indent with spaces only
 (setq-default indent-tabs-mode nil)
@@ -34,10 +35,6 @@
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
-
-(setq split-height-threshold 0)
-(setq split-width-threshold 50)
-(setq window-min-width 30)
 
 ;; Better buffer names
 (require 'uniquify)
@@ -199,6 +196,7 @@ i.e. change right window to bottom, or change bottom window to right."
    flycheck
    git-modes
    god-mode
+   helm
    js2-mode
    markdown-mode
    magit
@@ -332,21 +330,6 @@ i.e. change right window to bottom, or change bottom window to right."
 ;; tuareg should not skip phrase after eval
 (setq-default tuareg-skip-after-eval-phrase nil)
 
-;;a try to swap home keys
-(define-key key-translation-map "\C-b" "\C-s")
-(define-key key-translation-map "\C-s" "\C-b")
-(define-key key-translation-map "\C-f" "\C-r")
-(define-key key-translation-map "\C-r" "\C-f")
-(define-key key-translation-map "\C-t" "\C-p")
-(define-key key-translation-map "\C-p" "\C-t")
-(define-key god-local-mode-map (kbd "t") 'previous-line)
-(define-key god-local-mode-map (kbd "s") 'backward-char)
-(define-key god-local-mode-map (kbd "r") 'forward-char)
-(define-key god-local-mode-map (kbd "p") 'transpose-char)
-(define-key god-local-mode-map (kbd "b") 'isearch-forward)
-(define-key god-local-mode-map (kbd "f") 'isearch-backward)
-(global-set-key (kbd "C-x C-b") 'save-buffer) ;; That is translated C-x C-s
-(global-set-key (kbd "C-x C-r") 'ido-find-file) ;; That is translated C-x C-f
 ;; Use solarized colors
 (setq solarized-termcolors 256)
 (setq frame-background-mode 'dark)
