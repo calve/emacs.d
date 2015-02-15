@@ -19,6 +19,7 @@
 (global-set-key (kbd "M-g") 'magit-status)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-é") 'set-mark-command)
 
 ;; Indent with spaces only
 (setq-default indent-tabs-mode nil)
