@@ -201,6 +201,7 @@ i.e. change right window to bottom, or change bottom window to right."
    js2-mode
    markdown-mode
    magit
+   multiple-cursors
    php-eldoc
    php-mode
    pkgbuild-mode
@@ -330,6 +331,12 @@ i.e. change right window to bottom, or change bottom window to right."
 
 ;; tuareg should not skip phrase after eval
 (setq-default tuareg-skip-after-eval-phrase nil)
+
+;; manage multiple-cursors
+(global-set-key (kbd "C-c m e") 'mc/edit-lines)
+(global-set-key (kbd "C-c m n") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-c m p") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c m m") 'mc/mark-all-like-this)
 
 ;; Use solarized colors
 (setq solarized-termcolors 256)
