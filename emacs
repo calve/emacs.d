@@ -1,3 +1,4 @@
+;; -*- (lisp-mode) -*-
 
 ;;This key will kill the active buffer without any prompting whatsoever.
 (defun kill-this-buffer ()
