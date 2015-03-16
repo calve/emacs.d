@@ -185,6 +185,9 @@ i.e. change right window to bottom, or change bottom window to right."
 (add-to-list 'el-get-recipe-path "~/.emacs.d/custom-recipes")
 (el-get 'sync)
 
+;; define hydra from github
+(el-get-bundle abo-abo/hydra)
+
 ;; now set our own packages
 (setq
  my:el-get-packages
@@ -199,9 +202,11 @@ i.e. change right window to bottom, or change bottom window to right."
    git-modes
    god-mode
    helm
+   hydra
    js2-mode
    markdown-mode
    magit
+   multiple-cursors
    php-eldoc
    php-mode
    pkgbuild-mode
@@ -326,11 +331,20 @@ i.e. change right window to bottom, or change bottom window to right."
   (sp-local-pair "*" "*")
   (sp-local-pair "'" nil :actions nil)
   (sp-local-tag "2" "**" "**")
-  (sp-local-tag "s" "```scheme" "```")
   (sp-local-tag "<"  "<_>" "</_>" :transform 'sp-match-sgml-tags))
 
 ;; tuareg should not skip phrase after eval
 (setq-default tuareg-skip-after-eval-phrase nil)
+
+;; manage multiple-cursors with an hydra
+(defhydra hydra-multiple-cursors (global-map "<f2>")
+  "Multiple cursors"
+  ("e" mc/edit-lines "edit")
+  ("n" mc/mark-next-like-this "next")
+  ("p" mc/mark-next-previous-like-this "previous")
+  ("a" mc/mark-next-all-like-this "all")
+  )
+(global-set-key (kbd "C-c m") 'hydra-multiple-cursors/body)
 
 ;; Use solarized colors
 (setq solarized-termcolors 256)
