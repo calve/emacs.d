@@ -359,8 +359,10 @@ i.e. change right window to bottom, or change bottom window to right."
   "Multiple cursors"
   ("e" mc/edit-lines "edit")
   ("n" mc/mark-next-like-this "next")
-  ("p" mc/mark-next-previous-like-this "previous")
-  ("a" mc/mark-next-all-like-this "all")
+  ("p" mc/mark-previous-like-this "previous")
+  ("f" mc/mark-next-symbol-like-this "next symbol")
+  ("b" mc/mark-previous-symbol-like-this "previous symbol")
+  ("a" mc/mark-all-symbols-like-this "all")
   )
 (global-set-key (kbd "C-c m") 'hydra-multiple-cursors/body)
 
