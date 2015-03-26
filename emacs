@@ -343,7 +343,9 @@ i.e. change right window to bottom, or change bottom window to right."
 
 ;; stop insert closing parenthesis
 (smartparens-global-mode)
-(sp-local-pair 'web-mode "<%" "%>")
+(sp-local-pair 'web-mode "<% " " %>")
+(sp-local-pair 'web-mode "<%= " " %>")
+(sp-local-pair 'web-mode "<%# " " %>")
 ;;; markdown-mode
 (sp-with-modes '(markdown-mode gfm-mode rst-mode)
   (sp-local-pair "*" "*")
