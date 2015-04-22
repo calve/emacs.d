@@ -12,7 +12,6 @@
 (global-set-key (kbd "C-c f") 'flyspell-buffer)
 (global-set-key (kbd "C-c g") 'magit-status)
 (global-set-key (kbd "C-c t") 'resize-cell)
-(global-set-key (kbd "C-c w") 'resize-window)
 (global-set-key (kbd "C-x C-k") 'kill-this-buffer)
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-x o") 'helm-occur)
@@ -102,32 +101,6 @@ i.e. change right window to bottom, or change bottom window to right."
                   (split-window-horizontally))
                 (set-window-buffer (windmove-find-other-window neighbour-dir) other-buf))))))))
 
-;; Resize window interactively using tsrn
-(defun resize-window (&optional arg)    ; Hirose Yuuji and Bob Wiener
-  "*Resize window interactively."
-  (interactive "p")
-  (if (one-window-p) (error "Cannot resize sole window"))
-  (or arg (setq arg 1))
-  (let (c)
-    (catch 'done
-      (while t
-        (message
-         "h=heighten, s=shrink, w=widen, n=narrow (by %d);  1-9=unit, t=toogle split q=quit"
-         arg)
-        (setq c (read-char))
-        (condition-case ()
-            (cond
-             ((= c ?h) (enlarge-window arg))
-             ((= c ?s) (shrink-window arg))
-             ((= c ?w) (enlarge-window-horizontally arg))
-             ((= c ?n) (shrink-window-horizontally arg))
-             ((= c ?.) (window-toggle-split-direction))
-             ((= c 13) (throw 'done t))
-             ((= c ?q) (throw 'done t))
-             ((and (> c ?0) (<= c ?9)) (setq arg (- c ?0)))
-             (t (beep)))
-          (error (beep)))))
-    (message "Done.")))
 
 ;; An interactive command to manage table-cell easily
 (defun resize-cell (&optional arg)    ; Adapted from Hirose Yuuji and Bob Wiener
@@ -368,6 +341,56 @@ i.e. change right window to bottom, or change bottom window to right."
   ("a" mc/mark-all-symbols-like-this "all")
   )
 (global-set-key (kbd "C-c m") 'hydra-multiple-cursors/body)
+
+(defun ora-ex-point-mark ()
+  (interactive)
+  (if rectangle-mark-mode
+      (exchange-point-and-mark)
+    (let ((mk (mark)))
+      (rectangle-mark-mode 1)
+      (goto-char mk))))
+
+;; rectangle management using hydra
+(defhydra hydra-rectangle (:body-pre (rectangle-mark-mode 1)
+                                     :color pink
+                                     :post (deactivate-mark))
+    "
+  ^_p_^     _d_elete    _s_trin
+_b_   _f_   _o_k        _y_ank
+  ^_n_^     new-_c_opy  _r_eset
+^^^^        _e_xchange  _u_ndo
+^^^^        ^ ^         _p_aste
+"
+    ("b" backward-char nil)
+    ("f" forward-char nil)
+    ("p" previous-line nil)
+    ("n" next-line nil)
+    ("e" ora-ex-point-mark nil)
+    ("c" copy-rectangle-as-kill nil)
+    ("d" delete-rectangle nil)
+    ("r" (if (region-active-p)
+             (deactivate-mark)
+           (rectangle-mark-mode 1)) nil)
+    ("y" yank-rectangle nil)
+    ("u" undo nil)
+    ("s" string-rectangle nil)
+    ("p" kill-rectangle nil)
+    ("o" nil nil))
+(global-set-key (kbd "C-x SPC") 'hydra-rectangle/body)
+
+;; windows management using hydra
+(defhydra hydra-windows (:color red
+                         :hint nil)
+  "
+_h_eighten _s_hrink _w_iden _n_arrow _q_uit
+"
+  ("h" enlarge-window digit-argument)
+  ("s" shrink-window digit-argument)
+  ("w" enlarge-window-horizontally digit-argument)
+  ("n" shrink-window-horizontally digit-argument)
+  ("q" nil nil)
+  )
+(global-set-key (kbd "C-c w") 'hydra-windows/body)
 
 ;; Use solarized colors
 (setq solarized-termcolors 256)
