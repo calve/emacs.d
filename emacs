@@ -12,7 +12,6 @@
 (global-set-key (kbd "C-c f") 'flyspell-buffer)
 (global-set-key (kbd "C-c g") 'magit-status)
 (global-set-key (kbd "C-c t") 'resize-cell)
-(global-set-key (kbd "C-c w") 'resize-window)
 (global-set-key (kbd "C-x C-k") 'kill-this-buffer)
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-ç") 'other-window)
@@ -101,32 +100,6 @@ i.e. change right window to bottom, or change bottom window to right."
                   (split-window-horizontally))
                 (set-window-buffer (windmove-find-other-window neighbour-dir) other-buf))))))))
 
-;; Resize window interactively using tsrn
-(defun resize-window (&optional arg)    ; Hirose Yuuji and Bob Wiener
-  "*Resize window interactively."
-  (interactive "p")
-  (if (one-window-p) (error "Cannot resize sole window"))
-  (or arg (setq arg 1))
-  (let (c)
-    (catch 'done
-      (while t
-        (message
-         "h=heighten, s=shrink, w=widen, n=narrow (by %d);  1-9=unit, t=toogle split q=quit"
-         arg)
-        (setq c (read-char))
-        (condition-case ()
-            (cond
-             ((= c ?h) (enlarge-window arg))
-             ((= c ?s) (shrink-window arg))
-             ((= c ?w) (enlarge-window-horizontally arg))
-             ((= c ?n) (shrink-window-horizontally arg))
-             ((= c ?.) (window-toggle-split-direction))
-             ((= c 13) (throw 'done t))
-             ((= c ?q) (throw 'done t))
-             ((and (> c ?0) (<= c ?9)) (setq arg (- c ?0)))
-             (t (beep)))
-          (error (beep)))))
-    (message "Done.")))
 
 ;; An interactive command to manage table-cell easily
 (defun resize-cell (&optional arg)    ; Adapted from Hirose Yuuji and Bob Wiener
@@ -403,6 +376,20 @@ _b_   _f_   _o_k        _y_ank
     ("p" kill-rectangle nil)
     ("o" nil nil))
 (global-set-key (kbd "C-x SPC") 'hydra-rectangle/body)
+
+;; windows management using hydra
+(defhydra hydra-windows (:color red
+                         :hint nil)
+  "
+_h_eighten _s_hrink _w_iden _n_arrow _q_uit
+"
+  ("h" enlarge-window digit-argument)
+  ("s" shrink-window digit-argument)
+  ("w" enlarge-window-horizontally digit-argument)
+  ("n" shrink-window-horizontally digit-argument)
+  ("q" nil nil)
+  )
+(global-set-key (kbd "C-c w") 'hydra-windows/body)
 
 ;; Use solarized colors
 (setq solarized-termcolors 256)
