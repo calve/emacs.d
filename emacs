@@ -15,6 +15,7 @@
 (global-set-key (kbd "C-c w") 'resize-window)
 (global-set-key (kbd "C-x C-k") 'kill-this-buffer)
 (global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-x o") 'helm-occur)
 (global-set-key (kbd "C-ç") 'other-window)
 (global-set-key (kbd "C-é") 'control-mode)
 (global-set-key (kbd "M-g") 'magit-status)
