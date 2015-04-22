@@ -368,6 +368,42 @@ i.e. change right window to bottom, or change bottom window to right."
   )
 (global-set-key (kbd "C-c m") 'hydra-multiple-cursors/body)
 
+(defun ora-ex-point-mark ()
+  (interactive)
+  (if rectangle-mark-mode
+      (exchange-point-and-mark)
+    (let ((mk (mark)))
+      (rectangle-mark-mode 1)
+      (goto-char mk))))
+
+;; rectangle management using hydra
+(defhydra hydra-rectangle (:body-pre (rectangle-mark-mode 1)
+                                     :color pink
+                                     :post (deactivate-mark))
+    "
+  ^_p_^     _d_elete    _s_trin
+_b_   _f_   _o_k        _y_ank
+  ^_n_^     new-_c_opy  _r_eset
+^^^^        _e_xchange  _u_ndo
+^^^^        ^ ^         _p_aste
+"
+    ("b" backward-char nil)
+    ("f" forward-char nil)
+    ("p" previous-line nil)
+    ("n" next-line nil)
+    ("e" ora-ex-point-mark nil)
+    ("c" copy-rectangle-as-kill nil)
+    ("d" delete-rectangle nil)
+    ("r" (if (region-active-p)
+             (deactivate-mark)
+           (rectangle-mark-mode 1)) nil)
+    ("y" yank-rectangle nil)
+    ("u" undo nil)
+    ("s" string-rectangle nil)
+    ("p" kill-rectangle nil)
+    ("o" nil nil))
+(global-set-key (kbd "C-x SPC") 'hydra-rectangle/body)
+
 ;; Use solarized colors
 (setq solarized-termcolors 256)
 (setq frame-background-mode 'dark)
