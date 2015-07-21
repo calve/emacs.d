@@ -178,6 +178,7 @@ i.e. change right window to bottom, or change bottom window to right."
    tuareg-mode
    xterm-color
    yasnippet
+   virtualenvwrapper
    web-mode
    ))
 
@@ -260,7 +261,10 @@ i.e. change right window to bottom, or change bottom window to right."
 (add-hook 'python-mode-hook 'eldoc-mode)
 (add-hook 'python-mode-hook 'anaconda-mode)
 (setq-default flycheck-flake8-maximum-line-length 120)
-
+;;(setq python-shell-virtualenv-path "~/.virtualenv")
+(venv-initialize-interactive-shells) ;; if you want interactive shell support
+(venv-initialize-eshell) ;; if you want eshell support
+(setq venv-location "~/.virtualenvs/")
 
 ;; whitespaces configuration, mostly show tabulations
 (setq whitespace-style (quote (face tabs tab-mark trailing empty)))
