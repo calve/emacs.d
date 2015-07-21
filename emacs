@@ -253,7 +253,7 @@ i.e. change right window to bottom, or change bottom window to right."
 (global-company-mode)
 (setq company-selection-wrap-around t)
 (setq company-minimum-prefix-length 1)
-(setq company-idle-delay 0)
+(setq company-idle-delay 0.1)
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
