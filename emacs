@@ -392,6 +392,23 @@ _h_eighten _s_hrink _w_iden _n_arrow _q_uit
   )
 (global-set-key (kbd "C-c w") 'hydra-windows/body)
 
+;; manage markdown-mode with an hydra
+(defhydra hydra-markdown-mode (global-map "<f2>")
+  "Markdown mode"
+  ("b" markdown-insert-bold "bold")
+  ("c" markdown-insert-code "code")
+  ("f" markdown-insert-footnote "footnote")
+  ("i" markdown-insert-italic "italic")
+  ("l" markdown-insert-link "link")
+  ("L" markdown-insert-reference-link-dwim ("link with ref"))
+  ("p" markdown-insert-pre "pre")
+  ("/" markdown-complete-buffer "Complete")
+  ("-" markdown-insert-line "-------")
+  ("q" nil "quit")
+  )
+(global-set-key (kbd "C-c r") 'hydra-markdown-mode/body)
+
+
 ;; Use solarized colors
 (setq solarized-termcolors 256)
 (setq frame-background-mode 'dark)
