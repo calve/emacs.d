@@ -156,7 +156,6 @@ i.e. change right window to bottom, or change bottom window to right."
    anaconda-mode
    c-eldoc
    color-theme                ; nice looking emacs
-   color-theme-tango
    dtrt-indent                ; autodetect indentation
    flycheck
    git-modes
