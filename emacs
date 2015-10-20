@@ -1,4 +1,4 @@
-;; -*- (lisp-mode) -*-
+;; -*- lisp -*-
 
 ;;This key will kill the active buffer without any prompting whatsoever.
 (defun kill-this-buffer ()
@@ -121,11 +121,6 @@ i.e. change right window to bottom, or change bottom window to right."
 (require 'ido)
 (ido-mode t)
 
-(require 'package)
-(add-to-list 'package-archives
-  '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(package-initialize)
-
 ;; bootstrap el-get
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
@@ -158,7 +153,7 @@ i.e. change right window to bottom, or change bottom window to right."
    color-theme                ; nice looking emacs
    dtrt-indent                ; autodetect indentation
    flycheck
-   git-modes
+   flycheck-pyflakes
    god-mode
    helm
    hydra
@@ -171,6 +166,7 @@ i.e. change right window to bottom, or change bottom window to right."
    pkgbuild-mode
    popup
    rainbow-mode
+   rst-mode
    smartparens
    smex
    color-theme-solarized
@@ -421,7 +417,7 @@ _h_eighten _s_hrink _w_iden _n_arrow insert-_r_ow _i_nsert-column _d_elete-row d
 (add-hook 'window-setup-hook 'on-after-init)
 
 (enable-theme 'solarized)
-
+(set-frame-font "monofur for Powerline 12")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
