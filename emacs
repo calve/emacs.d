@@ -295,6 +295,7 @@ i.e. change right window to bottom, or change bottom window to right."
 ;;; markdown-mode
 (sp-with-modes '(markdown-mode gfm-mode rst-mode)
   (sp-local-pair "*" "*")
+  (sp-local-pair "|" "|")
   (sp-local-pair "'" nil :actions nil)
   (sp-local-tag "2" "**" "**")
   (sp-local-tag "<"  "<_>" "</_>" :transform 'sp-match-sgml-tags))
