@@ -357,10 +357,10 @@ _b_   _f_   _o_k        _y_ank
   "
 _h_eighten _s_hrink _w_iden _n_arrow _q_uit
 "
-  ("h" enlarge-window digit-argument)
-  ("s" shrink-window digit-argument)
-  ("w" enlarge-window-horizontally digit-argument)
-  ("n" shrink-window-horizontally digit-argument)
+  ("h" enlarge-window)
+  ("s" shrink-window)
+  ("w" enlarge-window-horizontally)
+  ("n" shrink-window-horizontally)
   ("q" nil nil)
   )
 (global-set-key (kbd "C-c w") 'hydra-windows/body)
