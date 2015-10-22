@@ -260,6 +260,9 @@ i.e. change right window to bottom, or change bottom window to right."
 (venv-initialize-interactive-shells) ;; if you want interactive shell support
 (venv-initialize-eshell) ;; if you want eshell support
 (setq venv-location "~/.virtualenvs/")
+;; use ipython
+(when (executable-find "ipython")
+    (setq python-shell-interpreter "ipython"))
 
 ;; whitespaces configuration, mostly show tabulations
 (setq whitespace-style (quote (face tabs tab-mark trailing empty)))
