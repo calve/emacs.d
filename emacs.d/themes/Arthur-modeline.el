@@ -1,7 +1,12 @@
 (setq mode-line-preformat
               (list
                                         ;(propertize "%b" 'face 'font-lock-default-face)
-               "%b"
+               '(:eval (propertize "%b "
+                                   'face 'font-lock-function-name-face
+                                   'help-echo "Current filename"))
+               '(:eval (propertize vc-mode
+                                   'face 'font-lock-comment-face
+                                   'help-echo "Current version-control status"))
                ;; line and column
                " (" ;; '%02' to set to 2 chars at least; prevents flickering
                (propertize "%02l" 'face 'font-lock-type-face) ","
@@ -48,7 +53,11 @@
                                            (emacs-uptime "Uptime:%hh"))))
                " --"
 	       '(:eval '("" minor-mode-alist))
-	       " "
+               ;; print current venv name if applicable
+               " "
+               '(:eval (propertize venv-current-name
+                                   'face 'font-lock-builtin-face
+                                   'help-echo "Current virtualenv"))
                )
 
               )
@@ -56,4 +65,3 @@
 (setq-default mode-line-format
               mode-line-preformat
 )
-
