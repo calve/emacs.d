@@ -423,6 +423,16 @@ _h_eighten _s_hrink _w_iden _n_arrow insert-_r_ow _i_nsert-column _d_elete-row d
 (enable-theme 'solarized)
 (set-frame-font "monofur for Powerline 12")
 
+;; unset annoying mediawiki binding
+(eval-after-load "mediawiki-mode"
+  '(define-key mediawiki-mode-map (kbd "C-<up>") nil))
+(eval-after-load "mediawiki-mode"
+  '(define-key mediawiki-mode-map (kbd "C-<down>") nil))
+(eval-after-load "mediawiki-mode"
+  '(define-key mediawiki-mode-map (kbd "C-<left>") nil))
+(eval-after-load "mediawiki-mode"
+  '(define-key mediawiki-mode-map (kbd "C-<right>") nil))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
