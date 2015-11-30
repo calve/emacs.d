@@ -423,6 +423,12 @@ _h_eighten _s_hrink _w_iden _n_arrow insert-_r_ow _i_nsert-column _d_elete-row d
 (enable-theme 'solarized)
 (set-frame-font "monofur for Powerline 12")
 
+(require 'mediawiki)
+(setq mediawiki-site-alist
+      (append '(("wikipedia_fr" "https://fr.wikipedia.org/w/" "091d2d499f" "" "Wikipédia:Accueil_principal"))
+              mediawiki-site-alist))
+
+
 ;; unset annoying mediawiki binding
 (eval-after-load "mediawiki-mode"
   '(define-key mediawiki-mode-map (kbd "C-<up>") nil))
@@ -432,6 +438,17 @@ _h_eighten _s_hrink _w_iden _n_arrow insert-_r_ow _i_nsert-column _d_elete-row d
   '(define-key mediawiki-mode-map (kbd "C-<left>") nil))
 (eval-after-load "mediawiki-mode"
   '(define-key mediawiki-mode-map (kbd "C-<right>") nil))
+
+
+(eval-after-load "mediawiki-mode"
+  '(define-key mediawiki-draft-mode-map (kbd "C-<up>") nil))
+(eval-after-load "mediawiki-mode"
+  '(define-key mediawiki-draft-mode-map (kbd "C-<down>") nil))
+(eval-after-load "mediawiki-mode"
+  '(define-key mediawiki-draft-mode-map (kbd "C-<left>") nil))
+(eval-after-load "mediawiki-mode"
+  '(define-key mediawiki-draft-mode-map (kbd "C-<right>") nil))
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
